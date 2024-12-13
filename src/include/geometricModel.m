@@ -47,7 +47,31 @@ classdef geometricModel < handle
             % - iTj: vector of matrices containing the transformation matrices from link i to link j for the input q.
             % The size of iTj is equal to (4,4,numberOfLinks)
             
+            self.q = q;
+        
+            % Ciclo su ogni giunto per calcolare la trasformazione aggiornata.
+            for j = 1:self.jointNumber
+                % Trasformation matrix for q = 0.
+                T_0 = self.iTj_0(:,:,j);
+                T_joint = eye(4);
 
+                switch self.jointType(j)
+                    case 0 % Revolut
+                        R_z = [cos(q(j)), -sin(q(j)), 0;
+                               sin(q(j)),  cos(q(j)), 0;
+                                     0,          0, 1];
+                        T_joint(1:3, 1:3) = R_z;
+        
+                    case 1 % Giunto prismatico.
+                        % Matrice di traslazione lungo z.
+                        T_joint(3, 4) = q(j);
+
+                    otherwise
+                        error("Not valid values for q.");
+                end
+        
+                self.iTj(:,:,j) = T_0 * T_joint;
+            end
         end
         function [bTk] = getTransformWrtBase(self,k)
             %% GetTransformatioWrtBase function
@@ -57,6 +81,10 @@ classdef geometricModel < handle
             % bTk : transformation matrix from the manipulator base to the k-th joint in
             % the configuration identified by iTj.
 
+            bTk = eye(4,4);
+            for j=1:k
+                bTk = bTk * self.iTj(:,:,j);
+            end
         end
         function [bTt] = getToolTransformWrtBase(self)
             %% getToolTransformWrtBase function
@@ -64,7 +92,9 @@ classdef geometricModel < handle
             % None 
             % bTt : transformation matrix from the manipulator base to the
             % tool
-
+            
+            bTe = self.getTransformWrtBase(self.jointNumber);
+            bTt = bTe * self.eTt;
         end
     end
 end

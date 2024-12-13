@@ -1,3 +1,4 @@
+function [q_new] = KinematicSimulation(q, q_dot, dt, qmin, qmax)
 %% Kinematic Simulation function
 %
 % Inputs
@@ -8,6 +9,8 @@
 % - q_max upper joints bound
 %
 % Outputs
-% - q new joint configuration
+% - q_new new joint configuration
+
+
 
 end

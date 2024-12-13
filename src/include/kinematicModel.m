@@ -22,7 +22,25 @@ classdef kinematicModel < handle
         % The function update:
         % - J: end-effector jacobian matrix
 
-            
+            bTe = self.gm.getTransformWrtBase(self.gm.jointNumber);
+            b_r_e = bTe(1:3,4);
+            jJb_A = zeros(3, self.gm.jointNumber);
+            jJb_L = zeros(3, self.gm.jointNumber);
+
+            for j = 1:self.gm.jointNumber
+                bTj = self.gm.getTransformWrtBase(j);
+                b_k_z = bTj(1:3,1:3)*[0; 0; 1];
+                if ~self.gm.jointType(j)
+                    jJb_A(:, j) = b_k_z;
+                    
+                    b_r_j = bTj(1:3,4);
+                    j_r_e = b_r_e - b_r_j;
+                    jJb_L(:, j) = cross(b_k_z, j_r_e);
+                    continue;
+                end
+                jJb_L(:, j) = b_k_z;
+            end
+            self.J = [jJb_A; jJb_L];
         end
     end
 end

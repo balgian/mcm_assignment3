@@ -14,12 +14,14 @@ q0 = [0,0,0,0,0,0,0]';
 %% Define the tool frame rigidly attached to the end-effector
 % Tool specifications
 e_eta_te = [0 0 pi/10];
-e_O_t = [0.2 0 0]';
+e_O_t_cm = [0.2 0 0]';
 
 % Separate the 3 angles
 psi = e_eta_te(1);
 theta = e_eta_te(2);
 phi = e_eta_te(3);
+
+% e_O_t_cm;
 
 Rz = [cos(psi) -sin(psi) 0; sin(psi) cos(psi) 0; 0 0 1];
 Ry = [cos(theta) 0 sin(theta); 0 1 0; -sin(theta) 0 cos(theta)];
@@ -125,20 +127,18 @@ plot3(bTg(1,4),bTg(2,4),bTg(3,4),'ro')
 %%%%%%% Kinematic Simulation %%%%%%%
 for i = t
     % Update geometric and kinematic model and use the cartesian control ... to do
-    km.updateJacobian();
+
 
     %% INVERSE KINEMATIC
     % Compute desired joint velocities ... to do
-    x_dot = cc.getCartesianReference(bTg);
-    q_dot = km.J\cc.getCartesianReference(bTg);
+    q_dot = [];
 
     % simulating the robot - implement KinematicSimulation
-    % q = KinematicSimulation(q, q_dot, dt, qmin, qmax);
+    q = KinematicSimulation(q, q_dot, dt, qmin, qmax);
     
     %% Plot Script (do not change)
     % computing the actual velocity and saving the unitary direction for plot
     % do NOT change
-    km.J
     x_dot_actual = km.J*q_dot;
 
     x_dot_hist = [x_dot_hist; (x_dot_actual/norm(x_dot_actual))'];
