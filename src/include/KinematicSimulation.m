@@ -1,4 +1,4 @@
-function [q_new] = KinematicSimulation(q, q_dot, dt, qmin, qmax)
+function [q_new] = KinematicSimulation(q, q_dot, dt, q_min, q_max)
 %% Kinematic Simulation function
 %
 % Inputs
@@ -11,6 +11,6 @@ function [q_new] = KinematicSimulation(q, q_dot, dt, qmin, qmax)
 % Outputs
 % - q_new new joint configuration
 
-
-
+q_new = zeros(length(q), 1);
+q_new = max(q_min, min(q_max, q + q_dot *dt));
 end

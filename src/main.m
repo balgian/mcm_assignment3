@@ -56,14 +56,28 @@ disp('bTt q = q0');
 disp(bTt);
 
 %% Define the goal frame and initialize cartesian control
-b_O_g = [0.15 -0.85 0.3]';
-b_theta_g = pi/6;
+b_O_g = [-0.14; -0.85; 0.6];
+b_eta_g = [-3.02; -0.40; -1.33];
 
-Ry = [cos(b_theta_g) 0 sin(b_theta_g);
-    0 1 0; -sin(b_theta_g) 0 cos(b_theta_g)];
+psi = b_eta_g(1);
+theta = b_eta_g(2);
+phi = b_eta_g(3);
+
+Rz = [cos(psi) -sin(psi) 0; sin(psi) cos(psi) 0; 0 0 1];
+Ry = [cos(theta) 0 sin(theta); 0 1 0; -sin(theta) 0 cos(theta)];
+Rx = [1 0 0; 0 cos(phi) -sin(phi); 0 sin(phi) cos(phi)];
+
+% Multiply the rotation matrices in the ZYX order
+R = Rz * Ry * Rx;
+
+I = eye(3,3);
+
+if ((det(R) - 1 > 1e-10) || any(abs(R * R' - I) > 1e-10,"all"))
+    error("R can't be a rotation matrix.")
+end
 
 % Goal definition 
-bTg = [Ry b_O_g; zeros(1,3) 1];
+bTg = [R b_O_g; zeros(1,3) 1];
 disp('bTg')
 disp(bTg)
 
@@ -125,20 +139,20 @@ plot3(bTg(1,4),bTg(2,4),bTg(3,4),'ro')
 %%%%%%% Kinematic Simulation %%%%%%%
 for i = t
     % Update geometric and kinematic model and use the cartesian control ... to do
+    gm.updateDirectGeometry(q);
     km.updateJacobian();
+    x_dot = cc.getCartesianReference(bTg);
 
     %% INVERSE KINEMATIC
     % Compute desired joint velocities ... to do
-    x_dot = cc.getCartesianReference(bTg);
-    q_dot = km.J\cc.getCartesianReference(bTg);
+    q_dot = pinv(km.J) * x_dot;
 
     % simulating the robot - implement KinematicSimulation
-    % q = KinematicSimulation(q, q_dot, dt, qmin, qmax);
+    q = KinematicSimulation(q, q_dot, dt, qmin, qmax);
     
     %% Plot Script (do not change)
     % computing the actual velocity and saving the unitary direction for plot
     % do NOT change
-    km.J
     x_dot_actual = km.J*q_dot;
 
     x_dot_hist = [x_dot_hist; (x_dot_actual/norm(x_dot_actual))'];

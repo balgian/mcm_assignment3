@@ -98,5 +98,3 @@ classdef geometricModel < handle
         end
     end
 end
-
-

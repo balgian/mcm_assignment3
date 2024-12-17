@@ -28,9 +28,9 @@ classdef cartesianControl < handle
             
             b_ni_tb = [self.k_a * eye(3) zeros(3); zeros(3) self.k_l * eye(3)];
             bTt = self.gm.getToolTransformWrtBase();
-            gTt = bTg\bTt;
+            tTg = bTt\bTg;
 
-            R = gTt(1:3,1:3);
+            R = tTg(1:3,1:3);
 
             I = eye(3,3);
             % Check matrix R to see if its size is 3x3
@@ -86,12 +86,11 @@ classdef cartesianControl < handle
                 h = a / sin(theta);
             end
 
-            t_rho_tg = h * theta;
+            b_rho_tg = bTt(1:3,1:3) * h * theta;
 
-            t_r_tg = bTg(1:3,4) - bTt(1:3,4);
+            b_r_tg = bTg(1:3,4) - bTt(1:3,4);
 
-            x_dot = b_ni_tb * [t_rho_tg; t_r_tg];
+            x_dot = b_ni_tb * [b_rho_tg; b_r_tg];
         end
     end
 end
-
