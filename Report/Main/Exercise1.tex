@@ -67,7 +67,7 @@ The simulation of the robot's motion is implemented in the function \verb*|Kinem
 	\item upper joint bounds $\mathbf{q_{\text{max}}}$.
 \end{itemize}
 And update $q_{i}$, where $i$ is the $i$-th joint, with the new value $q_{i} + \dot{\bar{q_{i}}} \cdot t_{s}$, if it is not greater of $\mathbf{q_{\text{max}}}$ and lower than $\mathbf{q_{\text{min}}}$. \\
-During the simulation the robot's tool moves directly to the goal, see Figure \ref{fig:motionofthemanipulator}. This is coherent with the graph in Figure \ref{fig:directionvelocitiesee}, indeed both angular and linear velocities are constant, this means that the tool configuration changes constantly (without variation of the velocities).
+During the simulation the robot's tool moves directly to the goal, see Figure \ref{fig:finalconfiguration} and \ref{fig:motionofthemanipulator}. This is coherent with the graph in Figure \ref{fig:directionvelocitiesee}, indeed both angular and linear velocities are constant, this means that the tool configuration changes constantly (without variation of the velocities).
 
 \begin{figure}
 	\centering
