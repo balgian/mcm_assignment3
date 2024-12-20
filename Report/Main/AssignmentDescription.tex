@@ -28,15 +28,15 @@ Implement an inverse kinematic control loop to control the tool of the manipulat
 
 The goal frame  must be defined knowing that:
 \begin{itemize}
-    \item The goal position with respect to the base frame is $^b O_g = [0.15, -0.85, 0.3]^\top(m)$
-    \item The goal frame is rotated of $\theta = \pi/6$ around the y-axis of the base frame (inertial frame).
+    \item The goal position with respect to the base frame is $^b O_g = (-0.14, -0.85, 0.6)^\top(m)$
+    \item The goal frame is rotated of $^b \eta_{g} = (-3.02, -0.40, -1.33)^\top(rad)$ around the y-axis of the base frame (inertial frame).
 \end{itemize}
 
 \textbf{Q2.2}
-Compute the desired angular and linear reference velocities of the end-effector  with respect to the base: $^b \nu^*_{t/b} = \begin{bmatrix}
+Compute the desired angular and linear reference velocities of the end-effector  with respect to the base: $^b \nu^*_{t/0} = \begin{bmatrix}
     \kappa_a &0\\
     0 &\kappa_l
-\end{bmatrix}\cdot \begin{bmatrix} \omega^*_{t/b} \\  v^*_{t/b} \end{bmatrix}$, such that $\kappa_{a} = 0.8$,$\kappa_{l} = 0.8$ is the gain.
+\end{bmatrix}\cdot \begin{bmatrix} \omega^*_{t/0} \\  v^*_{t/0} \end{bmatrix}$, such that $\kappa_{a} = 0.8$,$\kappa_{l} = 0.8$ is the gain.
     
 \textbf{Q2.3}
 Compute the desired joint velocities $\dot{\bar{q}}$
