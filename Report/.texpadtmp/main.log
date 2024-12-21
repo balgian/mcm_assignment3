@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.5)  20 DEC 2024 15:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.5)  20 DEC 2024 16:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -746,6 +746,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
+Overfull \hbox (2.65208pt too wide) in paragraph at lines 28--32
+\OT1/phv/m/n/10 It is im-ple-mented the new class [][]\OT1/pcr/m/n/10 cartesianControl[]\OT1/phv/m/n/10 , where is present a func-tion [][]\OT1/pcr/m/n/10 getCartesianReference[]\OT1/phv/m/n/10 ,
+ []
+
 <Resources/FinalConfiguration.png, id=32, 1124.2pt x 843.15pt>
 File: Resources/FinalConfiguration.png Graphic file (type png)
 <use Resources/FinalConfiguration.png>
@@ -797,15 +801,15 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14867 strings out of 474116
- 268569 string characters out of 5743683
+ 14870 strings out of 474116
+ 268601 string characters out of 5743683
  1943187 words of memory out of 5000000
- 36968 multiletter control sequences out of 15000+600000
- 591853 words of font info for 90 fonts, out of 8000000 for 9000
+ 36970 multiletter control sequences out of 15000+600000
+ 593945 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  79i,12n,93p,1129b,803s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /Users/gianmarco/University/ModelingAndControlOfManipulators/Assignment3/Report/.texpadtmp/main.pdf (7 pages, 330900 bytes).
+Output written on /Users/gianmarco/University/ModelingAndControlOfManipulators/Assignment3/Report/.texpadtmp/main.pdf (7 pages, 330745 bytes).
 PDF statistics:
  123 PDF objects out of 1000 (max. 8388607)
  73 compressed objects within 1 object stream
